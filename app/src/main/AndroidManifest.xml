@@ -10,14 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Organizze">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".activities.SigninActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CustomIntroActivity"
+            android:exported="true"
+            android:screenOrientation="nosensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.MainActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" />
     </application>
 
 </manifest>
