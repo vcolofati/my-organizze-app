@@ -15,27 +15,27 @@ class CustomIntroActivity : IntroActivity() {
         isButtonNextVisible = false
 
         addSlide(FragmentSlide.Builder()
-            .background(R.color.white)
+            .background(android.R.color.white)
             .fragment(R.layout.intro_1)
             .build())
 
         addSlide(FragmentSlide.Builder()
-            .background(R.color.white)
+            .background(android.R.color.white)
             .fragment(R.layout.intro_2)
             .build())
 
         addSlide(FragmentSlide.Builder()
-            .background(R.color.white)
+            .background(android.R.color.white)
             .fragment(R.layout.intro_3)
             .build())
 
         addSlide(FragmentSlide.Builder()
-            .background(R.color.white)
+            .background(android.R.color.white)
             .fragment(R.layout.intro_4)
             .build())
 
         addSlide(FragmentSlide.Builder()
-            .background(R.color.white)
+            .background(android.R.color.white)
             .canGoForward(false)
             .fragment(R.layout.intro_signup_redirect)
             .build())
