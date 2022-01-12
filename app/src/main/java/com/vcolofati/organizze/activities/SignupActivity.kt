@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
@@ -19,14 +20,11 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var editName: EditText
     private lateinit var editEmail: EditText
     private lateinit var editPassword: EditText
-    private lateinit var viewModel: SignupViewModel
+    private val viewModel: SignupViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
-
-
-        viewModel = ViewModelProvider(this).get(SignupViewModel::class.java)
 
         buttonSignup = findViewById(R.id.buttonSignup)
         editName = findViewById(R.id.editName)
@@ -39,31 +37,40 @@ class SignupActivity : AppCompatActivity() {
             val name = this.editName.text.toString()
             val email = this.editEmail.text.toString()
             val password = this.editPassword.text.toString()
-            this.viewModel.signup(User(name, email, password)).addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(this, "Sucesso ao cadastrar usuário", Toast.LENGTH_SHORT).show()
-                } else {
-                    var message = ""
-                    try {
-                        throw task.exception!!
-                    } catch (e: FirebaseAuthWeakPasswordException) {
-                        message = "Digite uma senha mais forte"
-                    } catch (e: FirebaseAuthInvalidCredentialsException) {
-                        message = "Por favor, digite um email válido"
-                    } catch (e: FirebaseAuthUserCollisionException) {
-                        message = "E-mail já está em uso"
-                    } catch (e: Exception) {
-                        message = "Erro ao cadastrar usuário: ${e.message}"
-                    }
-                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-                }
-            }
+            this.viewModel.signup(User(name, email, password))
         }
     }
 
     fun setObservers() {
         this.viewModel.feedback().observe(this, { feedback: String ->
             Toast.makeText(this, feedback, Toast.LENGTH_SHORT).show()
+        })
+
+        this.viewModel.task().observe(this, { task ->
+            task.addOnCompleteListener(this) {
+                val toast = Toast.makeText(this, null, Toast.LENGTH_SHORT)
+                when {
+                    task.isSuccessful -> {
+                        finish()
+                    }
+                    else -> {
+                        var message = ""
+                        try {
+                            throw task.exception!!
+                        } catch (e: FirebaseAuthWeakPasswordException) {
+                            message = "Digite uma senha mais forte"
+                        } catch (e: FirebaseAuthInvalidCredentialsException) {
+                            message = "Por favor, digite um email válido"
+                        } catch (e: FirebaseAuthUserCollisionException) {
+                            message = "E-mail já está em uso"
+                        } catch (e: Exception) {
+                            message = "Erro ao cadastrar usuário: ${e.message}"
+                        }
+                        toast.setText(message)
+                        toast.show()
+                    }
+                }
+            }
         })
     }
 }

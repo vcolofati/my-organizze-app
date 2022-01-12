@@ -10,6 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Organizze">
         <activity
+            android:name=".activities.IncomeActivity"
+            android:theme="@style/IncomeTheme"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ExpensesActivity"
+            android:theme="@style/ExpensesTheme"
+            android:exported="false" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:screenOrientation="nosensor"
+            android:theme="@style/Theme.Organizze.NoActionBar" />
+        <activity
             android:name=".activities.SigninActivity"
             android:exported="false" />
         <activity
@@ -25,10 +39,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activities.MainActivity"
-            android:exported="false"
-            android:screenOrientation="nosensor" />
     </application>
 
 </manifest>

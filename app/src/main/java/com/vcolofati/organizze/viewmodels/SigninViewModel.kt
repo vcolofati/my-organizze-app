@@ -8,17 +8,16 @@ import com.google.firebase.auth.AuthResult
 import com.vcolofati.organizze.models.User
 import com.vcolofati.organizze.repositories.AuthRepository
 
-class SignupViewModel : ViewModel() {
+class SigninViewModel : ViewModel() {
 
     private val mFeedback: MutableLiveData<String> = MutableLiveData()
     private val mTask: MutableLiveData<Task<AuthResult>> = MutableLiveData()
 
-    private val repository: AuthRepository = AuthRepository()
+    private val repository = AuthRepository()
 
     private fun validateFields(user: User): Boolean {
         var valid = false
         when {
-            user.name.isEmpty() -> mFeedback.value = "Preencha o nome"
             user.email.isEmpty() -> mFeedback.value = "Preencha o email"
             user.password.isEmpty() -> mFeedback.value = "Preencha a senha"
             else -> valid = true
@@ -26,9 +25,10 @@ class SignupViewModel : ViewModel() {
         return valid
     }
 
-    fun signup(user: User) {
+    fun signin(email: String, password: String) {
+        val user = User("", email, password)
         if (validateFields(user)) {
-            mTask.value = this.repository.signup(user)
+            mTask.value = this.repository.signin(user)
         }
     }
 

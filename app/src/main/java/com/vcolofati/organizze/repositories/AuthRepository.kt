@@ -15,4 +15,15 @@ class AuthRepository {
     fun signup(user: User) : Task<AuthResult> {
         return auth.createUserWithEmailAndPassword(user.email, user.password)
     }
+
+    fun signin(user: User): Task<AuthResult> {
+        return auth.signInWithEmailAndPassword(user.email, user.password)
+    }
+
+    fun isUserLogged(): Boolean {
+        if (auth.currentUser != null) {
+            return true
+        }
+        return false
+    }
 }

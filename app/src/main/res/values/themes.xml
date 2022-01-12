@@ -1,4 +1,5 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources
+    xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.Organizze" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Status bar color. -->
@@ -9,7 +10,35 @@
         <item name="colorSecondary">@color/colorAccent</item>
     </style>
 
+    <!--Tema despesas-->
+    <style name="ExpensesTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimaryExpenses</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkExpenses</item>
+        <item name="colorAccent">@color/colorAccentExpenses</item>
+        <item name="tint">@android:color/white</item>
+    </style>
+
+    <!--Tema receitas-->
+    <style name="IncomeTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimaryIncome</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkIncome</item>
+        <item name="colorAccent">@color/colorAccentIncome</item>
+    </style>
+
     <style name="textGrey">
         <item name="android:textColor">@android:color/darker_gray</item>
     </style>
+
+    <style name="Theme.Organizze.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Organizze.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Organizze.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
