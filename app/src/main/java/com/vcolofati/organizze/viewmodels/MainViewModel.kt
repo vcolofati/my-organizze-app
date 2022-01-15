@@ -6,14 +6,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.vcolofati.organizze.repositories.AuthRepository
 
-class CustomIntroViewModel(application: Application): AndroidViewModel(application) {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val mIsUserLogged: MutableLiveData<Boolean> = MutableLiveData()
+    private val repository: AuthRepository = AuthRepository(application)
 
-    private val repository = AuthRepository(application)
+    private val mIsUserLogged: MutableLiveData<Boolean> = MutableLiveData();
 
     fun isUserLogged() : LiveData<Boolean> {
         mIsUserLogged.value = this.repository.isUserLogged()
         return mIsUserLogged
+    }
+
+    fun signout() {
+        this.repository.signout()
     }
 }

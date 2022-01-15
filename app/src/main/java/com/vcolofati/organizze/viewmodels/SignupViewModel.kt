@@ -1,42 +1,50 @@
 package com.vcolofati.organizze.viewmodels
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.vcolofati.organizze.models.User
 import com.vcolofati.organizze.repositories.AuthRepository
+import com.vcolofati.organizze.repositories.DatabaseRepository
+import com.vcolofati.organizze.utils.Resource
+import com.vcolofati.organizze.utils.SignupCallback
 
-class SignupViewModel : ViewModel() {
+class SignupViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val mFeedback: MutableLiveData<String> = MutableLiveData()
-    private val mTask: MutableLiveData<Task<AuthResult>> = MutableLiveData()
+    private val mFeedback: MutableLiveData<Resource<String>> = MutableLiveData()
 
-    private val repository: AuthRepository = AuthRepository()
+    private val mAuthRepository: AuthRepository = AuthRepository(application)
+    private val mDatabaseRepository: DatabaseRepository = DatabaseRepository()
 
     private fun validateFields(user: User): Boolean {
         var valid = false
         when {
-            user.name.isEmpty() -> mFeedback.value = "Preencha o nome"
-            user.email.isEmpty() -> mFeedback.value = "Preencha o email"
-            user.password.isEmpty() -> mFeedback.value = "Preencha a senha"
+            user.name.isEmpty() -> mFeedback.value = Resource.error("Preencha o nome", null)
+            user.email.isEmpty() -> mFeedback.value = Resource.error("Preencha o email", null)
+            user.password.isEmpty() -> mFeedback.value = Resource.error("Preencha a senha", null)
             else -> valid = true
         }
         return valid
     }
 
-    fun signup(user: User) {
+    fun signup(name: String, email: String, password: String) {
+        val user = User(name, email, password)
         if (validateFields(user)) {
-            mTask.value = this.repository.signup(user)
+           this.mAuthRepository.signup(user, object : SignupCallback {
+               override fun onSignup(uuid: String) {
+                   mFeedback.value = Resource.sucess(null)
+                   saveUserExtraData(uuid, user)
+               }
+           })
         }
     }
 
-    fun feedback(): LiveData<String> {
+    fun feedback(): LiveData<Resource<String>> {
         return mFeedback
     }
 
-    fun task(): LiveData<Task<AuthResult>> {
-        return mTask
+    private fun saveUserExtraData(uuid: String, user: User) {
+        this.mDatabaseRepository.saveUserExtraData(uuid, user)
     }
 }

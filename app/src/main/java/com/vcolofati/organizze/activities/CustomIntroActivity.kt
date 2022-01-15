@@ -48,15 +48,15 @@ class CustomIntroActivity : IntroActivity() {
             .build())
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
         this.isUserLogged()
     }
 
     private fun setObservers() {
-        this.viewModel.isUserLogged().observe(this, {
+        this.viewModel.isUserLogged().observe(this) {
             if(it == true) startActivity(Intent(this, MainActivity::class.java))
-        })
+        }
     }
 
     private fun isUserLogged() {

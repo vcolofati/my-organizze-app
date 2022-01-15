@@ -18,14 +18,14 @@
 
 
     <EditText
-        android:id="@+id/editTextDate"
+        android:id="@+id/editDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:inputType="date"
-        android:text="Ex: 19/10/2020"
-        app:layout_constraintBottom_toTopOf="@+id/editTextNumberDecimal"
+        android:hint="Ex: 19/10/2020"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/editCategory"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,42 +34,42 @@
         app:layout_constraintVertical_chainStyle="packed" />
 
     <EditText
-        android:id="@+id/editTextNumberDecimal"
+        android:id="@+id/editCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:hint="Ex: Salário"
         android:inputType="numberDecimal"
-        android:text="Ex: Salário"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+        app:layout_constraintTop_toBottomOf="@+id/editDate" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:hint="Ex: Salário mensal"
         android:inputType="text"
-        android:text="Ex:Salário mensal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal" />
+        app:layout_constraintTop_toBottomOf="@+id/editCategory" />
 
     <EditText
-        android:id="@+id/editTextNumberDecimal2"
+        android:id="@+id/editValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@android:color/transparent"
         android:inputType="numberDecimal"
         android:padding="10dp"
-        android:text="R$ 0,00"
+        android:text="RS 0,00"
         android:textAlignment="textEnd"
         android:textColor="@android:color/background_light"
         android:textSize="34sp"
@@ -79,14 +79,16 @@
         app:layout_constraintTop_toTopOf="@+id/view" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/fabSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        app:srcCompat="@drawable/ic_baseline_add" />
+        app:srcCompat="@drawable/ic_baseline_check" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

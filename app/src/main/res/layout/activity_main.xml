@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
@@ -28,30 +28,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:src="@drawable/ic_baseline_add"
         fab:fab_colorNormal="@color/colorAccent"
         fab:fab_colorPressed="#F44336"
         fab:fab_colorRipple="@color/colorAccent">
 
         <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabExpenses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fabExpenses"
-            app:fab_colorNormal="@color/colorPrimaryExpenses"
             android:src="@drawable/ic_baseline_remove"
             app:fab_label="Despesas"
-            app:fab_size="mini" />
+            app:fab_size="mini"
+            fab:fab_colorNormal="@color/colorPrimaryExpenses"
+            fab:fab_colorPressed="#F44336"
+            fab:fab_colorRipple="@color/colorPrimaryExpenses"/>
 
         <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabIncome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fabIncome"
-            app:fab_colorNormal="@color/colorPrimaryIncome"
             android:src="@drawable/ic_baseline_add"
             app:fab_label="Receitas"
-            app:fab_size="mini" />
+            app:fab_size="mini"
+            fab:fab_colorNormal="@color/colorPrimaryIncome"
+            fab:fab_colorPressed="#02AA80"
+            fab:fab_colorRipple="@color/colorPrimaryIncome"/>
 
     </com.github.clans.fab.FloatingActionMenu>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

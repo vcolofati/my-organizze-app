@@ -17,7 +17,8 @@
         <item name="colorPrimary">@color/colorPrimaryExpenses</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkExpenses</item>
         <item name="colorAccent">@color/colorAccentExpenses</item>
-        <item name="tint">@android:color/white</item>
+        <item name="colorSecondary">@color/colorPrimaryExpenses</item>
+        <item name="colorOnSecondary">@android:color/white</item>
     </style>
 
     <!--Tema receitas-->
@@ -27,6 +28,8 @@
         <item name="colorPrimary">@color/colorPrimaryIncome</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkIncome</item>
         <item name="colorAccent">@color/colorAccentIncome</item>
+        <item name="colorSecondary">@color/colorPrimaryIncome</item>
+        <item name="colorOnSecondary">@android:color/white</item>
     </style>
 
     <style name="textGrey">
