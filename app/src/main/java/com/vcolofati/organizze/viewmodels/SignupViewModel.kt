@@ -8,14 +8,14 @@ import com.vcolofati.organizze.models.User
 import com.vcolofati.organizze.repositories.AuthRepository
 import com.vcolofati.organizze.repositories.DatabaseRepository
 import com.vcolofati.organizze.utils.Resource
-import com.vcolofati.organizze.utils.SignupCallback
+import com.vcolofati.organizze.utils.SignCallback
 
 class SignupViewModel(application: Application) : AndroidViewModel(application) {
 
     private val mFeedback: MutableLiveData<Resource<String>> = MutableLiveData()
 
     private val mAuthRepository: AuthRepository = AuthRepository(application)
-    private val mDatabaseRepository: DatabaseRepository = DatabaseRepository()
+    private val mDatabaseRepository: DatabaseRepository = DatabaseRepository(application)
 
     private fun validateFields(user: User): Boolean {
         var valid = false
@@ -31,12 +31,10 @@ class SignupViewModel(application: Application) : AndroidViewModel(application) 
     fun signup(name: String, email: String, password: String) {
         val user = User(name, email, password)
         if (validateFields(user)) {
-           this.mAuthRepository.signup(user, object : SignupCallback {
-               override fun onSignup(uuid: String) {
-                   mFeedback.value = Resource.sucess(null)
-                   saveUserExtraData(uuid, user)
-               }
-           })
+           this.mAuthRepository.signup(user) { uuid ->
+               mFeedback.value = Resource.sucess(null)
+               saveUserExtraData(uuid, user)
+           }
         }
     }
 

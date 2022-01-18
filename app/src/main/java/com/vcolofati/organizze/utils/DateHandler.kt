@@ -10,5 +10,10 @@ class DateHandler {
             val date = System.currentTimeMillis()
             return sdf.format(date)
         }
+
+        fun removeInvalidCharacters(date: String): String {
+            val formattedDate = date.split("/")
+            return formattedDate[1] + formattedDate[2]
+        }
     }
 }

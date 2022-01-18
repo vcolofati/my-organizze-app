@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import com.vcolofati.organizze.models.User
 import com.vcolofati.organizze.repositories.AuthRepository
 import com.vcolofati.organizze.utils.Resource
-import com.vcolofati.organizze.utils.SignupCallback
+import com.vcolofati.organizze.utils.SignCallback
 
 class SigninViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -28,11 +28,8 @@ class SigninViewModel(application: Application) : AndroidViewModel(application) 
     fun signin(email: String, password: String) {
         val user = User("", email, password)
         if (validateFields(user)) {
-            this.repository.signin(user, object: SignupCallback {
-                override fun onSignup(uuid: String) {
-                    mFeedback.value = Resource.sucess(null)
-                }
-            })
+            this.repository.signin(user
+            ) { mFeedback.value = Resource.sucess(null) }
         }
     }
 

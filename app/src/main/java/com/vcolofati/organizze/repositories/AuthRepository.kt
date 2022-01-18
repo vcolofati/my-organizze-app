@@ -12,19 +12,24 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.vcolofati.organizze.models.User
-import com.vcolofati.organizze.utils.SignupCallback
+import com.vcolofati.organizze.utils.SignCallback
 
 class AuthRepository(private val application: Application) {
+
     companion object {
         private val auth: FirebaseAuth = Firebase.auth
+
+        fun getUserUuid(): String {
+            return auth.currentUser!!.uid
+        }
     }
 
-    fun signup(user: User, callback: SignupCallback) {
+    fun signup(user: User, callback: SignCallback) {
         auth.createUserWithEmailAndPassword(user.email, user.password)
             .addOnCompleteListener(application.mainExecutor) {
                 when {
                     it.isSuccessful -> {
-                        callback.onSignup(it.result!!.user!!.uid)
+                        callback.onSign(it.result!!.user!!.uid)
                     }
                     else -> {
                         // Tratar erros possíveis
@@ -46,27 +51,28 @@ class AuthRepository(private val application: Application) {
             }
     }
 
-    fun signin(user: User, callback: SignupCallback): Task<AuthResult> {
-        return auth.signInWithEmailAndPassword(user.email, user.password).addOnCompleteListener(application.mainExecutor) {
-            when {
-                it.isSuccessful -> {
-                    callback.onSignup(it.result!!.user!!.uid)
-                }
-                else -> {
-                    var message = ""
-                    try {
-                        throw it.exception!!
-                    } catch (e: FirebaseAuthInvalidUserException) {
-                        message = "Usuário não existe"
-                    } catch (e: FirebaseAuthInvalidCredentialsException) {
-                        message = "Senha incorreta"
-                    }  catch (e: Exception) {
-                        message = "Erro ao logar usuário: ${e.message}"
+    fun signin(user: User, callback: SignCallback): Task<AuthResult> {
+        return auth.signInWithEmailAndPassword(user.email, user.password)
+            .addOnCompleteListener(application.mainExecutor) {
+                when {
+                    it.isSuccessful -> {
+                        callback.onSign(it.result!!.user!!.uid)
                     }
-                    Toast.makeText(application, message, Toast.LENGTH_SHORT).show()
+                    else -> {
+                        var message = ""
+                        try {
+                            throw it.exception!!
+                        } catch (e: FirebaseAuthInvalidUserException) {
+                            message = "Usuário não existe"
+                        } catch (e: FirebaseAuthInvalidCredentialsException) {
+                            message = "Senha incorreta"
+                        } catch (e: Exception) {
+                            message = "Erro ao logar usuário: ${e.message}"
+                        }
+                        Toast.makeText(application, message, Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
-        }
     }
 
     fun signout() {
