@@ -11,7 +11,7 @@ import com.vcolofati.organizze.utils.Resource
 
 class ExpensesViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val mDatabaseRepository = DatabaseRepository(application)
+    private val mDatabaseRepository = DatabaseRepository(application, AuthRepository.getUserUuid())
 
     private val feedback: MutableLiveData<Resource<String>> = MutableLiveData()
 
@@ -30,11 +30,10 @@ class ExpensesViewModel(application: Application) : AndroidViewModel(application
     fun saveExpense(value: String, category: String, description: String, date: String) {
         if (this.validateFields(category, date, description, value)) {
             val doubleValue = value.toDouble()
-            val userUuid = AuthRepository.getUserUuid()
             val movement = Movement(date, category, description, "d", doubleValue)
-            this.mDatabaseRepository.saveMovement(userUuid, movement)
+            this.mDatabaseRepository.saveMovement(movement)
             feedback.value = Resource.sucess(null)
-            this.mDatabaseRepository.updateUserTotalExpenses(userUuid, doubleValue)
+            this.mDatabaseRepository.updateUserTotalExpenses(doubleValue)
         }
     }
 

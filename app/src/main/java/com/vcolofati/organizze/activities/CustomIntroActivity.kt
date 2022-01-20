@@ -2,11 +2,13 @@ package com.vcolofati.organizze.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import androidx.activity.viewModels
 import com.heinrichreimersoftware.materialintro.app.IntroActivity
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide
 import com.vcolofati.organizze.R
+import com.vcolofati.organizze.activities.fragments.RedirectFragment
 import com.vcolofati.organizze.viewmodels.CustomIntroViewModel
 
 class CustomIntroActivity : IntroActivity() {
@@ -44,7 +46,7 @@ class CustomIntroActivity : IntroActivity() {
         addSlide(FragmentSlide.Builder()
             .background(android.R.color.white)
             .canGoForward(false)
-            .fragment(R.layout.intro_signup_redirect)
+            .fragment(RedirectFragment.newInstance())
             .build())
     }
 
@@ -61,13 +63,5 @@ class CustomIntroActivity : IntroActivity() {
 
     private fun isUserLogged() {
         this.viewModel.isUserLogged()
-    }
-
-    fun btnSignup(view: View) {
-        startActivity(Intent(this, SignupActivity::class.java))
-    }
-
-    fun btnSignin(view: View) {
-        startActivity(Intent(this, SigninActivity::class.java))
     }
 }

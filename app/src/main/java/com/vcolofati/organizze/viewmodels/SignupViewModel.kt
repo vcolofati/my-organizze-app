@@ -15,7 +15,7 @@ class SignupViewModel(application: Application) : AndroidViewModel(application) 
     private val mFeedback: MutableLiveData<Resource<String>> = MutableLiveData()
 
     private val mAuthRepository: AuthRepository = AuthRepository(application)
-    private val mDatabaseRepository: DatabaseRepository = DatabaseRepository(application)
+    private val mDatabaseRepository: DatabaseRepository = DatabaseRepository(application, AuthRepository.getUserUuid())
 
     private fun validateFields(user: User): Boolean {
         var valid = false

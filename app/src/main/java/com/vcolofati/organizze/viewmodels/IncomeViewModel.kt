@@ -10,7 +10,7 @@ import com.vcolofati.organizze.repositories.DatabaseRepository
 import com.vcolofati.organizze.utils.Resource
 
 class IncomeViewModel(application: Application): AndroidViewModel(application) {
-    private val mDatabaseRepository = DatabaseRepository(application)
+    private val mDatabaseRepository = DatabaseRepository(application, AuthRepository.getUserUuid())
 
     private val feedback: MutableLiveData<Resource<String>> = MutableLiveData()
 
@@ -29,11 +29,10 @@ class IncomeViewModel(application: Application): AndroidViewModel(application) {
     fun saveIncome(value: String, category: String, description: String, date: String) {
         if (this.validateFields(category, date, description, value)) {
             val doubleValue = value.toDouble()
-            val userUuid = AuthRepository.getUserUuid()
             val movement = Movement(date, category, description, "i", doubleValue)
-            this.mDatabaseRepository.saveMovement(userUuid, movement)
+            this.mDatabaseRepository.saveMovement(movement)
             feedback.value = Resource.sucess(null)
-            this.mDatabaseRepository.updateUserTotalIncome(userUuid, doubleValue)
+            this.mDatabaseRepository.updateUserTotalIncome(doubleValue)
         }
     }
 
