@@ -14,7 +14,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_signin.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/content_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/fragment_redirect.xml" value="0.19583333333333333" />
@@ -25,6 +25,7 @@
         <entry key="app/src/main/res/layout/intro_4.xml" value="0.17777777777777778" />
         <entry key="app/src/main/res/layout/intro_signup.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/intro_signup_redirect.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/movimentation_recycler_item.xml" value="0.25" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.19583333333333333" />
       </map>
     </option>

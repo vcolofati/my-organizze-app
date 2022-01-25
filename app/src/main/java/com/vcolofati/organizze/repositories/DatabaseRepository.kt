@@ -8,27 +8,49 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import com.vcolofati.organizze.models.Movement
+import com.vcolofati.organizze.models.Movimentation
 import com.vcolofati.organizze.models.User
 import com.vcolofati.organizze.utils.DateHandler
 
 class DatabaseRepository(
     private val application: Application,
     private val userUuid: String,
-    val data: MutableLiveData<User>? = null
+    val userData: MutableLiveData<User>? = null,
+    val movimentationData: MutableLiveData<List<Movimentation>>? = null
 ) {
 
     companion object {
         private val database = Firebase.database
     }
 
-    val userRef = database.getReference("users").child(userUuid)
+    private lateinit var tempDate: String
+    private val userRef = database.getReference("users").child(userUuid)
+    private val movimentRef = database.getReference("movimentation").child(userUuid)
 
     private var value: User? = null
+    private var movList: MutableList<Movimentation> = ArrayList()
 
-    private val valueEventListener = object : ValueEventListener {
+    private val userValueEventListener = object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
-            data?.value = snapshot.getValue<User>()
+            userData?.value = snapshot.getValue<User>()
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+            TODO("Not yet implemented")
+        }
+    }
+
+    private val movimentationValueEventListener = object : ValueEventListener {
+        override fun onDataChange(snapshot: DataSnapshot) {
+            movList.clear()
+            for (movimentationSnapshot: DataSnapshot in snapshot.children) {
+                val movimentation = movimentationSnapshot.getValue<Movimentation>()
+                movimentation?.let {
+                    movimentation.key = movimentationSnapshot.key
+                    movList.add(movimentation)
+                }
+            }
+            movimentationData?.value = movList
         }
 
         override fun onCancelled(error: DatabaseError) {
@@ -40,26 +62,29 @@ class DatabaseRepository(
         this.userRef.child(uuid).setValue(user)
     }
 
-    fun userDataListener() {
-        this.userRef.addValueEventListener(valueEventListener)
+    fun setUserDataListener() {
+        this.userRef.addValueEventListener(userValueEventListener)
     }
 
-    fun detachListener() {
-        this.userRef.removeEventListener(valueEventListener)
+    fun detachUserDataListener() {
+        this.userRef.removeEventListener(userValueEventListener)
     }
 
-    fun saveMovement(movement: Movement) {
-        database.getReference("movimentation")
-            .child(userUuid)
-            .child(DateHandler.removeInvalidCharacters(movement.date))
+    fun detachMovimentationDataListener() {
+        this.movimentRef.child(tempDate).removeEventListener(movimentationValueEventListener)
+    }
+
+    fun saveMovimentation(movimentation: Movimentation) {
+        movimentRef
+            .child(DateHandler.removeInvalidCharacters(movimentation.date))
             .push()
-            .setValue(movement)
+            .setValue(movimentation)
     }
 
     fun updateUserTotalExpenses(value: Double) {
         this.userRef.get().addOnSuccessListener {
             val user = it.getValue<User>()
-            this.userRef.child("totalExpenses").setValue(user!!.totalExpenses + value)
+            this.userRef.child("totalExpenses").setValue(user?.totalExpenses?.plus(value))
         }.addOnFailureListener { }
     }
 
@@ -67,7 +92,20 @@ class DatabaseRepository(
 
         this.userRef.get().addOnSuccessListener {
             val user = it.getValue<User>()
-            this.userRef.child("totalIncome").setValue(user!!.totalIncome + value)
+            this.userRef.child("totalIncome").setValue(user?.totalIncome?.plus(value))
         }.addOnFailureListener { }
+    }
+
+    fun getMovimentations(date: String) {
+        this.tempDate = date
+        movimentRef
+            .child(date).addValueEventListener(movimentationValueEventListener)
+    }
+
+    fun removeMovimentation(key: String) {
+        movimentRef
+            .child(tempDate)
+            .child(key)
+            .removeValue()
     }
 }

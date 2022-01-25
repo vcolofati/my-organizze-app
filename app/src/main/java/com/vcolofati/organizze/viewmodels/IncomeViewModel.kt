@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.vcolofati.organizze.models.Movement
+import com.vcolofati.organizze.models.Movimentation
 import com.vcolofati.organizze.repositories.AuthRepository
 import com.vcolofati.organizze.repositories.DatabaseRepository
 import com.vcolofati.organizze.utils.Resource
@@ -29,8 +29,8 @@ class IncomeViewModel(application: Application): AndroidViewModel(application) {
     fun saveIncome(value: String, category: String, description: String, date: String) {
         if (this.validateFields(category, date, description, value)) {
             val doubleValue = value.toDouble()
-            val movement = Movement(date, category, description, "i", doubleValue)
-            this.mDatabaseRepository.saveMovement(movement)
+            val movimentation = Movimentation(date, category, description, "i", doubleValue)
+            this.mDatabaseRepository.saveMovimentation(movimentation)
             feedback.value = Resource.sucess(null)
             this.mDatabaseRepository.updateUserTotalIncome(doubleValue)
         }
