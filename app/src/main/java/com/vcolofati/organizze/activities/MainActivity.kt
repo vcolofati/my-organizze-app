@@ -110,10 +110,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun alertDialogBuilder(viewHolder: RecyclerView.ViewHolder) {
         val alertDialog: AlertDialog.Builder = AlertDialog.Builder(this)
-        alertDialog.setTitle("Excluir Movimentação da conta")
-            .setMessage("Você tem certeza que realmente deseja excluir essa movimentação?")
+        alertDialog.setTitle(getString(R.string.alert_dialog_title))
+            .setMessage(getString(R.string.alert_dialog_message))
             .setCancelable(false)
-            .setPositiveButton("Confirmar")  { _, _ ->
+            .setPositiveButton(getString(R.string.alert_dialog_positive_text))  { _, _ ->
                 val position = viewHolder.adapterPosition
                 val movimentation = mAdapter.getMovimentation(position)
                 val key = movimentation.key
@@ -123,8 +123,7 @@ class MainActivity : AppCompatActivity() {
                     mAdapter.notifyItemRemoved(position)
                 }
             }
-            .setNegativeButton("Cancelar")  { _, _ ->
-                Toast.makeText(this, "Cancelado", Toast.LENGTH_SHORT).show()
+            .setNegativeButton(getString(R.string.alert_dialog_negative_text))  { _, _ ->
                 mAdapter.notifyDataSetChanged()
             }
             .create()

@@ -36,6 +36,17 @@
     <string name="intro4_text1">Tudo organizado, no \n no celular ou computador</string>
     <string name="intro4_text2">Use no seu smartphone e \n acessando pelo site</string>
     <string name="content_main_balance">R$ 0,00</string>
-    <string name="content_main_name">Carregando...</string>
+    <string name="content_main_name">Carregando…</string>
     <string name="content_main_description">saldo geral</string>
+    <string name="alert_dialog_title">Excluir Movimentação da conta</string>
+    <string name="alert_dialog_message">Você tem certeza que realmente deseja excluir essa movimentação?</string>
+    <string name="alert_dialog_positive_text">Confirmar</string>
+    <string name="alert_dialog_negative_text">Cancelar</string>
+    <string name="weak_password">Digite uma senha mais forte</string>
+    <string name="invalid_credentials">Por favor, digite um email válido</string>
+    <string name="user_collision">E-mail já está em uso</string>
+    <string name="generic_signup_error">Erro ao cadastrar usuário: %s</string>
+    <string name="invalid_user">Usuário não existe</string>
+    <string name="credential_mismatch">Senha incorreta</string>
+    <string name="generic_signin_error">Erro ao logar usuário: %s</string>
 </resources>

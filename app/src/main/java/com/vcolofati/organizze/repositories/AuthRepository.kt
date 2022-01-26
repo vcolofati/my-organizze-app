@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.vcolofati.organizze.R
 import com.vcolofati.organizze.models.User
 import com.vcolofati.organizze.utils.SignCallback
 
@@ -37,13 +38,13 @@ class AuthRepository(private val application: Application) {
                         try {
                             throw it.exception!!
                         } catch (e: FirebaseAuthWeakPasswordException) {
-                            message = "Digite uma senha mais forte"
+                            message = application.getString(R.string.weak_password)
                         } catch (e: FirebaseAuthInvalidCredentialsException) {
-                            message = "Por favor, digite um email válido"
+                            message = application.getString(R.string.invalid_credentials)
                         } catch (e: FirebaseAuthUserCollisionException) {
-                            message = "E-mail já está em uso"
+                            message = application.getString(R.string.user_collision)
                         } catch (e: Exception) {
-                            message = "Erro ao cadastrar usuário: ${e.message}"
+                            message = application.getString(R.string.generic_signup_error, e.message)
                         }
                         Toast.makeText(application, message, Toast.LENGTH_SHORT).show()
                     }
@@ -63,11 +64,11 @@ class AuthRepository(private val application: Application) {
                         try {
                             throw it.exception!!
                         } catch (e: FirebaseAuthInvalidUserException) {
-                            message = "Usuário não existe"
+                            message = application.getString(R.string.invalid_user)
                         } catch (e: FirebaseAuthInvalidCredentialsException) {
-                            message = "Senha incorreta"
+                            message = application.getString(R.string.credential_mismatch)
                         } catch (e: Exception) {
-                            message = "Erro ao logar usuário: ${e.message}"
+                            message = application.getString(R.string.generic_signin_error, e.message)
                         }
                         Toast.makeText(application, message, Toast.LENGTH_SHORT).show()
                     }
