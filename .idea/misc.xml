@@ -8,7 +8,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_lock.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/drawable/ic_baseline_person.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/layout/activity_custom_intro.xml" value="0.19583333333333333" />
-        <entry key="app/src/main/res/layout/activity_expenses.xml" value="0.19583333333333333" />
+        <entry key="app/src/main/res/layout/activity_expenses.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_income.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_intro.xml" value="0.1925925925925926" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -17,7 +17,7 @@
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.18177083333333333" />
-        <entry key="app/src/main/res/layout/fragment_redirect.xml" value="0.19583333333333333" />
+        <entry key="app/src/main/res/layout/fragment_redirect.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/intro_1.xml" value="0.5" />
         <entry key="app/src/main/res/layout/intro_2.xml" value="0.33" />

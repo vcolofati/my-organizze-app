@@ -11,4 +11,31 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="description_hint">Ex: Salário mensal</string>
+    <string name="value_hint">R$ 0,00</string>
+    <string name="date_hint">Ex: 19/10/2020</string>
+    <string name="category_hint">Ex: Salário</string>
+    <string name="signin_title">Acesse sua conta</string>
+    <string name="signin_button">Entrar</string>
+    <string name="email_hint">E-mail</string>
+    <string name="password_hint">Senha</string>
+    <string name="signup_title">Crie sua conta grátis</string>
+    <string name="name_hint">Nome</string>
+    <string name="signup_button">Cadastrar</string>
+    <string name="signup_termuses">Termos de uso</string>
+    <string name="redirect_page_text1">Crie sua conta grátis</string>
+    <string name="redirect_page_text2">Comece já! Junte-se a mais de meio \n milhão de pessoas</string>
+    <string name="redirect_page_button">Cadastre-se</string>
+    <string name="redirect_page_button2">Já tenho conta</string>
+    <string name="intro1_text1">Organize suas contas \n de onde estiver</string>
+    <string name="intro1_text2">Simples e fácil de usar e grátis</string>
+    <string name="intro2_text1">Saiba para onde está indo seu dinheiro</string>
+    <string name="intro2_text2">Categorizando seus lançamentos e vendo o \n destino de cada centavo</string>
+    <string name="intro3_text1">Nunca mais esqueça de \n pagar uma conta</string>
+    <string name="intro3_text2">Receba alertas quando quiser</string>
+    <string name="intro4_text1">Tudo organizado, no \n no celular ou computador</string>
+    <string name="intro4_text2">Use no seu smartphone e \n acessando pelo site</string>
+    <string name="content_main_balance">R$ 0,00</string>
+    <string name="content_main_name">Carregando...</string>
+    <string name="content_main_description">saldo geral</string>
 </resources>
