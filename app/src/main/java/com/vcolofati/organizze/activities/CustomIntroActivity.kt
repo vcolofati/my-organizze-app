@@ -2,10 +2,9 @@ package com.vcolofati.organizze.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
 import androidx.activity.viewModels
 import com.heinrichreimersoftware.materialintro.app.IntroActivity
+import com.heinrichreimersoftware.materialintro.app.NavigationPolicy
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide
 import com.vcolofati.organizze.R
 import com.vcolofati.organizze.activities.fragments.RedirectFragment
@@ -19,6 +18,21 @@ class CustomIntroActivity : IntroActivity() {
         super.onCreate(savedInstanceState)
 
         setObservers()
+
+        setNavigationPolicy(
+            object : NavigationPolicy {
+                override fun canGoForward(position: Int): Boolean {
+                    if (position == 4) {
+                        return false
+                    }
+                    return true
+                }
+
+                override fun canGoBackward(position: Int): Boolean {
+                    return true
+                }
+            }
+        )
 
         isButtonBackVisible = false
         isButtonNextVisible = false
@@ -45,7 +59,6 @@ class CustomIntroActivity : IntroActivity() {
 
         addSlide(FragmentSlide.Builder()
             .background(android.R.color.white)
-            .canGoForward(false)
             .fragment(RedirectFragment.newInstance())
             .build())
     }

@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import com.vcolofati.organizze.models.User
 import com.vcolofati.organizze.repositories.AuthRepository
 import com.vcolofati.organizze.utils.Resource
-import com.vcolofati.organizze.utils.SignCallback
 
 class SigninViewModel(application: Application) : AndroidViewModel(application) {
 

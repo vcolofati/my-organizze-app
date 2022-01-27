@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.vcolofati.organizze.R
 import com.vcolofati.organizze.databinding.ActivityIncomeBinding
 import com.vcolofati.organizze.utils.DateHandler
 import com.vcolofati.organizze.utils.Status
