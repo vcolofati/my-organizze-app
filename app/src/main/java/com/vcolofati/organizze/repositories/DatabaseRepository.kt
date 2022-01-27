@@ -35,9 +35,7 @@ class DatabaseRepository(
             userData?.value = snapshot.getValue<User>()
         }
 
-        override fun onCancelled(error: DatabaseError) {
-            TODO("Not yet implemented")
-        }
+        override fun onCancelled(error: DatabaseError) {}
     }
 
     private val movimentationValueEventListener = object : ValueEventListener {
@@ -53,9 +51,7 @@ class DatabaseRepository(
             movimentationData?.value = movList
         }
 
-        override fun onCancelled(error: DatabaseError) {
-            TODO("Not yet implemented")
-        }
+        override fun onCancelled(error: DatabaseError) {}
     }
 
     fun saveUserExtraData(uuid: String, user: User) {
