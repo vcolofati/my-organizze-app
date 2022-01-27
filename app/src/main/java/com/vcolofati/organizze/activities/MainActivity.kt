@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
         binding.fabExpenses.setOnClickListener {
             startActivity(Intent(this, ExpensesActivity::class.java))
             binding.fabMenu.close(false)
