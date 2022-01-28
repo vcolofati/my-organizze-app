@@ -49,4 +49,6 @@
     <string name="invalid_user">Usuário não existe</string>
     <string name="credential_mismatch">Senha incorreta</string>
     <string name="generic_signin_error">Erro ao logar usuário: %s</string>
+    <string name="currency_placeholder">R$ %.2f</string>
+    <string name="currency_placeholder_negative">- R$ %.2f</string>
 </resources>

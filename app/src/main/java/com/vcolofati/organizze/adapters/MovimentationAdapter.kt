@@ -31,12 +31,12 @@ class MovimentationAdapter(private val context: Context): RecyclerView.Adapter<M
 
         when(movement.type) {
             "d" -> {
-                holder.textValue.setTextColor(context.resources.getColor(R.color.colorAccent))
-                holder.textValue.text = "-${movement.value}"
+                holder.textValue.setTextColor(context.getColor(R.color.colorAccent))
+                holder.textValue.text = context.getString(R.string.currency_placeholder_negative, movement.value)
             }
             "i" -> {
-                holder.textValue.setTextColor(context.resources.getColor(R.color.colorAccentIncome))
-                holder.textValue.text = "${movement.value}"
+                holder.textValue.setTextColor(context.getColor(R.color.colorAccentIncome))
+                holder.textValue.text = context.getString(R.string.currency_placeholder, movement.value)
             }
         }
     }

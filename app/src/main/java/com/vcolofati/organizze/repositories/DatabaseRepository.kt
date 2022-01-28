@@ -14,7 +14,7 @@ import com.vcolofati.organizze.utils.DateHandler
 
 class DatabaseRepository(
     private val application: Application,
-    private val userUuid: String,
+    userUuid: String,
     val userData: MutableLiveData<User>? = null,
     val movimentationData: MutableLiveData<List<Movimentation>>? = null
 ) {
